@@ -2,21 +2,23 @@ from random import random
 import time
 import csv
 from itertools import zip_longest
+#from sndhdr import test_au
 
-def linearSearch(array, numToFind) -> int:
+
+def linear_search(array, num_to_find) -> int:
     for i in array:
-        if i == numToFind: return i
+        if i == num_to_find: return i
     return -1
 
-def binarySearch(array, numToFind) -> int:
+def binary_search(array, num_to_find) -> int:
     left = 0
     right = len(array) - 1
     middle = 0
     while left <= right:
         middle = int((left + right) / 2)
-        if numToFind < array[middle]:
+        if num_to_find < array[middle]:
             right = middle - 1
-        elif numToFind > array[middle]:
+        elif num_to_find > array[middle]:
             left = middle + 1
         else:
             return middle
@@ -26,9 +28,9 @@ def binarySearch(array, numToFind) -> int:
 if __name__ == '__main__':
     #runs = 1000
     runs = 1000000
-    testarray = [1, 2, 3, 4, 5, 6, 7, 8]
-    print(linearSearch(testarray, 96))
-    print(binarySearch(testarray, 96))
+    test_array = [1, 2, 3, 4, 5, 6, 7, 8]
+    print(linear_search(test_array, 96))
+    print(binary_search(test_array, 96))
     # No reason to change anything below this line, but feel free to browse
     print("Number of trials: " + str(runs))
     size = 100000
@@ -49,7 +51,7 @@ if __name__ == '__main__':
 
     for i in range(runs):
         startTime = time.time_ns()
-        linearSearch(unsortedArray, size + 1)
+        linear_search(unsortedArray, size + 1)
         endTime = time.time_ns()
         linearSearchRunTimesUnsorted.append((endTime - startTime))
 
@@ -61,7 +63,7 @@ if __name__ == '__main__':
 
     for i in range(runs):
         startTime = time.time_ns()
-        linearSearch(sortedArray, size + 1)
+        linear_search(sortedArray, size + 1)
         endTime = time.time_ns()
         linearSearchRunTimesSorted.append((endTime - startTime))
 
@@ -73,7 +75,7 @@ if __name__ == '__main__':
 
     for i in range(runs):
         startTime = time.time_ns()
-        binarySearch(sortedArray, size + 1)
+        binary_search(sortedArray, size + 1)
         endTime = time.time_ns()
         binarySearchRunTimesSorted.append((endTime - startTime))
 
